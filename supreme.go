@@ -6,19 +6,7 @@ import (
 	"io/ioutil"
 	"fmt"
 	"encoding/json"
-	"github.com/graphql-go/graphql"
-	"log"
 )
-
-func graph(query string) {
-	params := graphql.Params{RequestString: query}
-	r := graphql.Do(params)
-	if len(r.Errors) > 0 {
-		log.Fatalf("failed to execute graphql operation, errors: %+v", r.Errors)
-	}
-	rJSON, _ := json.Marshal(r)
-	fmt.Printf("%s \n", rJSON)
-}
 
 func bisa() {
 	var jsonValue = []byte(`{"query":"query {\n  userById(id:100) {\n    id\n  }\n}","variables":null}`)

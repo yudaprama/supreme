@@ -1,4 +1,4 @@
-package main
+package supreme
 
 import (
 	"net/http"
@@ -23,7 +23,15 @@ func bisa() {
   fmt.Println("response Body:", string(body))
 }
 
-func message(query string, variables string) string {
+var query = `
+query {
+  userById(id:100) {
+    id
+  }
+}
+`
+
+func message(variables string) string {
 	values := map[string]string{"query": query, "variables": variables}
 	jsonValue, _ := json.Marshal(values)
 	fmt.Println("jsonValue", string(jsonValue))
@@ -40,6 +48,6 @@ func message(query string, variables string) string {
 
 func main() {
 	//bisa()
-	fmt.Println(message("query {\n  userById(id:100) {\n    id\n  }\n}","{}"))
+	fmt.Println(message("{}"))
 	//graph("query {\n  userById(id:100) {\n    id\n  }\n}")
 }
